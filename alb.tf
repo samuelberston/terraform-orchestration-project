@@ -32,6 +32,18 @@ resource "aws_lb_target_group" "tf_target_group" {
   }
 }
 
+# Declare GitHub Actions input variables for self-signed certificate
+variable "SELFSIGNED_CERT" {
+  type        = string
+  description = "The self-signed certificate body"
+}
+
+# Declare variable for private key
+variable "SELFSIGNED_KEY" {
+  type        = string
+  description = "The private key for the self-signed certificate"
+}
+
 # Use the self-signed certificate
 resource "aws_iam_server_certificate" "my_selfsigned_cert" {
   name             = "tf-selfsigned-cert-v1"
