@@ -33,6 +33,9 @@ jobs:
       run: terraform init
 
     - name: Terraform Plan
+      env:
+        TF_VAR_selfsigned_cert: ${{ secrets.TF_SELFSIGNED_CERT }}
+        TF_VAR_selfsigned_key: ${{ secrets.TF_SELFSIGNED_KEY }}
       run: terraform plan
 
     - name: Terraform Apply
