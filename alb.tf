@@ -47,8 +47,8 @@ variable "SELFSIGNED_KEY" {
 # Use the self-signed certificate
 resource "aws_iam_server_certificate" "my_selfsigned_cert" {
   name             = "tf-selfsigned-cert-v1"
-  certificate_body = var.SELFSIGNED_CERT  # Use a Terraform variable
-  private_key      = var.SELFSIGNED_KEY   # Use a Terraform variable
+  certificate_body = var.TF_SELFSIGNED_CERT  # Use a Terraform variable
+  private_key      = var.TF_SELFSIGNED_KEY   # Use a Terraform variable
 }
 
 # HTTPS Listener for TLS termination on ALB
