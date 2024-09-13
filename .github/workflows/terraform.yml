@@ -34,8 +34,8 @@ jobs:
 
     - name: Terraform Plan
       env:
-        TF_VAR_selfsigned_cert: ${{ secrets.TF_SELFSIGNED_CERT }}
-        TF_VAR_selfsigned_key: ${{ secrets.TF_SELFSIGNED_KEY }}
+        TF_VAR_selfsigned_cert: ${{ secrets.SELFSIGNED_CERT }}
+        TF_VAR_selfsigned_key: ${{ secrets.SELFSIGNED_KEY }}
       run: terraform plan
 
     - name: Terraform Apply
