@@ -33,13 +33,13 @@ resource "aws_lb_target_group" "tf_target_group" {
 }
 
 # Declare GitHub Actions input variables for self-signed certificate
-variable "SELFSIGNED_CERT" {
+variable "TF_SELFSIGNED_CERT" {
   type        = string
   description = "The self-signed certificate body"
 }
 
 # Declare variable for private key
-variable "SELFSIGNED_KEY" {
+variable "TF_SELFSIGNED_KEY" {
   type        = string
   description = "The private key for the self-signed certificate"
 }
