@@ -35,8 +35,8 @@ resource "aws_lb_target_group" "tf_target_group" {
 # Use the self-signed certificate
 resource "aws_iam_server_certificate" "my_selfsigned_cert" {
   name             = "tf-selfsigned-cert-v1"
-  certificate_body = var.selfsigned_cert  # Use a Terraform variable
-  private_key      = var.selfsigned_key   # Use a Terraform variable
+  certificate_body = var.SELFSIGNED_CERT  # Use a Terraform variable
+  private_key      = var.SELFSIGNED_KEY   # Use a Terraform variable
 }
 
 # HTTPS Listener for TLS termination on ALB
