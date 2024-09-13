@@ -15,3 +15,8 @@ crash.log
 
 # Terraform plan output
 *.tfplan
+
+# selfsigned certificates
+my-selfsigned-key.pem
+tf-selfsigned-cert.pem
+tf-selfsigned-key.pem
