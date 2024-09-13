@@ -5,6 +5,7 @@ terraform.tfstate.backup
 # Terraform .terraform directories
 .terraform/
 .terraform.lock.hcl
+.terraform.tfstate.lock.info
 
 # Crash log files
 crash.log
