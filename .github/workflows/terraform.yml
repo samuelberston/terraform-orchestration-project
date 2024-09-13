@@ -36,7 +36,7 @@ jobs:
       env:
         TF_VAR_selfsigned_cert: ${{ secrets.SELFSIGNED_CERT }}
         TF_VAR_selfsigned_key: ${{ secrets.SELFSIGNED_KEY }}
-      run: terraform plan
+      run: terraform plan -lock=false
 
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
