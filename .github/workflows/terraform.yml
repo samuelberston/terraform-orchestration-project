@@ -39,5 +39,8 @@ jobs:
       run: terraform plan -lock=false
 
     - name: Terraform Apply
+      env:
+        TF_VAR_SELFSIGNED_CERT: ${{ secrets.TF_SELFSIGNED_CERT }}
+        TF_VAR_SELFSIGNED_KEY: ${{ secrets.TF_SELFSIGNED_KEY }}
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -lock=false -auto-approve
