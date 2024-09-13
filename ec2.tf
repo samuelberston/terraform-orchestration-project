@@ -58,11 +58,11 @@ resource "aws_instance" "terraform_orchestration_react_client_instance_2" {
 
 # EC2 instance in Private Subnet 1 (for backend)
 resource "aws_instance" "private_ec2_instance_1" {
-  ami           = "ami-0182f373e66f89c85"  # Amazon Linux
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.terraform_orchestration_private_subnet_1.id
-  key_name      = aws_key_pair.terraform_ssh_key.key_name
-  vpc_security_group_ids = [aws_security_group.backend_ec2_sg.id]  # Backend EC2 security group
+  ami                    = "ami-0182f373e66f89c85" # Amazon Linux
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.terraform_orchestration_private_subnet_1.id
+  key_name               = aws_key_pair.terraform_ssh_key.key_name
+  vpc_security_group_ids = [aws_security_group.backend_ec2_sg.id] # Backend EC2 security group
 
   tags = {
     Name = "terraform-orchestration-nodejs-server-ec2-1"
@@ -71,11 +71,11 @@ resource "aws_instance" "private_ec2_instance_1" {
 
 # EC2 instance in Private Subnet 2 (for backend)
 resource "aws_instance" "private_ec2_instance_2" {
-  ami           = "ami-0182f373e66f89c85"  # Amazon Linux
-  instance_type = "t2.micro"
-  subnet_id     = aws_subnet.terraform_orchestration_private_subnet_2.id
-  key_name      = aws_key_pair.terraform_ssh_key.key_name
-  vpc_security_group_ids = [aws_security_group.backend_ec2_sg.id]  # Backend EC2 security group
+  ami                    = "ami-0182f373e66f89c85" # Amazon Linux
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.terraform_orchestration_private_subnet_2.id
+  key_name               = aws_key_pair.terraform_ssh_key.key_name
+  vpc_security_group_ids = [aws_security_group.backend_ec2_sg.id] # Backend EC2 security group
 
   tags = {
     Name = "terraform-orchestration-nodejs-server-ec2-2"

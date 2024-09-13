@@ -37,10 +37,10 @@ resource "aws_security_group" "backend_ec2_sg" {
 
   # Allow inbound HTTP traffic from the Internal ALB
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    security_groups = [aws_security_group.private_alb_sg.id]  # Internal ALB security group
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.private_alb_sg.id] # Internal ALB security group
   }
 
   # Allow all outbound traffic (for internet access via NAT Gateway)
@@ -91,7 +91,7 @@ resource "aws_security_group" "private_alb_sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/24"]  # CIDR block of the public subnets
+    cidr_blocks = ["10.0.0.0/24"] # CIDR block of the public subnets
   }
 
   # Allow outbound traffic to the backend EC2 instances in the private subnet
@@ -99,7 +99,7 @@ resource "aws_security_group" "private_alb_sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["10.0.3.0/24", "10.0.4.0/24"]  # CIDR blocks of private subnets
+    cidr_blocks = ["10.0.3.0/24", "10.0.4.0/24"] # CIDR blocks of private subnets
   }
 
   tags = {

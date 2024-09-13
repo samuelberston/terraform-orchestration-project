@@ -72,10 +72,10 @@ resource "aws_lb_target_group_attachment" "tg_attachment_public_2" {
 # Private ALB (for backend traffic in private subnets)
 resource "aws_lb" "private_alb" {
   name               = "private-alb"
-  internal           = true  # Private ALB
+  internal           = true # Private ALB
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.private_alb_sg.id]  # Security group for Private ALB
-  subnets            = [
+  security_groups    = [aws_security_group.private_alb_sg.id] # Security group for Private ALB
+  subnets = [
     aws_subnet.terraform_orchestration_private_subnet_1.id,
     aws_subnet.terraform_orchestration_private_subnet_2.id
   ]
@@ -106,7 +106,7 @@ resource "aws_lb_target_group" "backend_target_group" {
   target_type = "instance"
 
   health_check {
-    path                = "/health"  # Replace with your health check path
+    path                = "/health" # Replace with your health check path
     interval            = 30
     timeout             = 5
     healthy_threshold   = 5
