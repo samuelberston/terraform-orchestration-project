@@ -47,7 +47,7 @@ resource "aws_db_instance" "postgres_rds" {
   db_name                = "tfPostgresDB"
   username               = "postgres"
   password               = "temporarypassword" # Update the password in RDS console then update it through GitHub environment secrets
-  parameter_group_name   = "default.aurora-postgresql15"
+  parameter_group_name   = "default.postgres16"
   db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
   vpc_security_group_ids = [aws_security_group.rds_postgres_sg.id]
   skip_final_snapshot    = true # FOR TESTING - Skip final snapshot on delete (use with caution)
