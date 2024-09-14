@@ -1,6 +1,6 @@
 # S3 Bucket for storing Terraform state
 resource "aws_s3_bucket" "terraform_state_bucket" {
-  bucket = "pimiento-tf-state-bucket"  # Make sure the bucket name is unique across all of AWS
+  bucket = "pimiento-tf-state-bucket" # Make sure the bucket name is unique across all of AWS
 
   tags = {
     Name = "pimiento-tf-state-bucket"
@@ -29,9 +29,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state_b
 
 # DynamoDB table for state locking
 resource "aws_dynamodb_table" "terraform_locks" {
-  name           = "terraform-state-locks"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "LockID"
+  name         = "terraform-state-locks"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
 
   attribute {
     name = "LockID"
