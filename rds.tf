@@ -44,7 +44,7 @@ resource "aws_db_instance" "postgres_rds" {
   allocated_storage      = 20
   engine                 = "postgres"
   instance_class         = "db.t3.micro"
-  db_name                = "tf-postgres-db"
+  db_name                = "tfPostgresDB"
   username               = "postgres"
   password               = "temporarypassword" # Update the password in RDS console then update it through GitHub environment secrets
   parameter_group_name   = "default.aurora-postgresql15"
