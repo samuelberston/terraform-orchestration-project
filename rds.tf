@@ -38,7 +38,7 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   }
 }
 
-variable "rds_password" {
+variable "RDS_PASSWORD" {
   description = "The password for the RDS instance"
   type        = string
   sensitive   = true  # Prevents Terraform from logging this variable
