@@ -41,7 +41,7 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 variable "RDS_PASSWORD" {
   description = "The password for the RDS instance"
   type        = string
-  sensitive   = true  # Prevents Terraform from logging this variable
+  sensitive   = true # Prevents Terraform from logging this variable
 }
 
 resource "aws_secretsmanager_secret" "rds_password" {
@@ -50,10 +50,10 @@ resource "aws_secretsmanager_secret" "rds_password" {
 }
 
 resource "aws_secretsmanager_secret_version" "rds_password_version" {
-  secret_id     = aws_secretsmanager_secret.rds_password.id
+  secret_id = aws_secretsmanager_secret.rds_password.id
   secret_string = jsonencode({
-    username = "postgres",               # Replace with your RDS username
-    password = var.RDS_PASSWORD         # Reference the password from the variable
+    username = "postgres",      # Replace with your RDS username
+    password = var.RDS_PASSWORD # Reference the password from the variable
   })
 }
 
@@ -65,7 +65,7 @@ resource "aws_db_instance" "postgres_rds" {
   instance_class         = "db.t3.micro"
   db_name                = "tfPostgresDB"
   username               = jsondecode(aws_secretsmanager_secret_version.rds_password_version.secret_string).username
-  password               = jsondecode(aws_secretsmanager_secret_version.rds_password_version.secret_string).password 
+  password               = jsondecode(aws_secretsmanager_secret_version.rds_password_version.secret_string).password
   parameter_group_name   = "default.postgres16"
   db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
   vpc_security_group_ids = [aws_security_group.rds_postgres_sg.id]
