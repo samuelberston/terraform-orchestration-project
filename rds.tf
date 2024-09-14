@@ -38,6 +38,25 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   }
 }
 
+variable "rds_password" {
+  description = "The password for the RDS instance"
+  type        = string
+  sensitive   = true  # Prevents Terraform from logging this variable
+}
+
+resource "aws_secretsmanager_secret" "rds_password" {
+  name        = "rds-database-password"
+  description = "Password for the RDS database"
+}
+
+resource "aws_secretsmanager_secret_version" "rds_password_version" {
+  secret_id     = aws_secretsmanager_secret.rds_password.id
+  secret_string = jsonencode({
+    username = "postgres",               # Replace with your RDS username
+    password = var.RDS_PASSWORD         # Reference the password from the variable
+  })
+}
+
 # PostgreSQL RDS instance
 resource "aws_db_instance" "postgres_rds" {
   identifier             = "terraform-postgres-rds"
@@ -45,8 +64,8 @@ resource "aws_db_instance" "postgres_rds" {
   engine                 = "postgres"
   instance_class         = "db.t3.micro"
   db_name                = "tfPostgresDB"
-  username               = "postgres"
-  password               = "temporarypassword" # Update the password in RDS console then update it through GitHub environment secrets
+  username               = jsondecode(aws_secretsmanager_secret_version.rds_password_version.secret_string).username
+  password               = jsondecode(aws_secretsmanager_secret_version.rds_password_version.secret_string).password 
   parameter_group_name   = "default.postgres16"
   db_subnet_group_name   = aws_db_subnet_group.rds_subnet_group.name
   vpc_security_group_ids = [aws_security_group.rds_postgres_sg.id]
