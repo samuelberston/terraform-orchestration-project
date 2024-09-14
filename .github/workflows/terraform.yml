@@ -25,9 +25,6 @@ jobs:
     - name: Terraform Format Check
       run: terraform fmt -check
 
-    - name: Terraform Validate
-      run: terraform validate        
-
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -37,6 +34,9 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
+
+    - name: Terraform Validate
+      run: terraform validate        
 
     - name: Terraform Plan
       env:
