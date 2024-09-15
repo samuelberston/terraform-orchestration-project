@@ -38,15 +38,16 @@ jobs:
     - name: Terraform Validate
       run: terraform validate        
 
+    - name: Debug Environment Variables
+      run: echo "RDS_PASSWORD=${{ secrets.RDS_PASSWORD }}"  # Check if the secret is passed correctly
+      
     - name: Terraform Plan
       env:
         TF_VAR_SELFSIGNED_CERT: ${{ secrets.TF_SELFSIGNED_CERT }}
         TF_VAR_SELFSIGNED_KEY: ${{ secrets.TF_SELFSIGNED_KEY }}
+        TF_VAR_RDS_PASSWORD: ${{ secrets.RDS_PASSWORD }}
       run: terraform plan -lock=false
 
-    - name: Debug Environment Variables
-      run: echo "RDS_PASSWORD=${{ secrets.RDS_PASSWORD }}"  # Check if the secret is passed correctly
-      
     - name: Terraform Apply
       env:
         TF_VAR_SELFSIGNED_CERT: ${{ secrets.TF_SELFSIGNED_CERT }}
