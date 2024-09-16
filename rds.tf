@@ -45,7 +45,7 @@ variable "RDS_PASSWORD" {
 }
 
 resource "aws_secretsmanager_secret" "rds_password" {
-  name        = "rds!cluster-e5f4c700-ac3b-4f88-be20-153d5b147010"
+  name        = "rds-database-password"
   description = "Password for the RDS database"
 }
 
