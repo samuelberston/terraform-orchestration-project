@@ -1,6 +1,6 @@
 # Create a CloudWatch log group
 resource "aws_cloudwatch_log_group" "app_log_group" {
-  name              = "/aws/ec2/app-logs"
+  name              = "/aws/cloudtrail/logs"
   retention_in_days = 7
 
   tags = {
