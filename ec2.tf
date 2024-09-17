@@ -9,6 +9,11 @@ resource "aws_instance" "terraform_orchestration_react_client_instance" {
   # Use the Security Group
   vpc_security_group_ids = [aws_security_group.terraform_orchestration_ec2_public_sg.id]
 
+  # Trivy - require IMDS access to require a token - https://avd.aquasec.com/misconfig/aws/ec2/avd-aws-0028/
+  metadata_options {
+    http_tokens = "required"
+  }
+
   tags = {
     Name = "terraform-orchestration-react-client-ec2-1"
   }
@@ -38,6 +43,11 @@ resource "aws_instance" "terraform_orchestration_react_client_instance_2" {
   # Use the Security Group
   vpc_security_group_ids = [aws_security_group.terraform_orchestration_ec2_public_sg.id]
 
+  # Trivy - require IMDS access to require a token - https://avd.aquasec.com/misconfig/aws/ec2/avd-aws-0028/
+  metadata_options {
+    http_tokens = "required"
+  }
+  
   tags = {
     Name = "terraform-orchestration-react-client-ec2-2"
   }
@@ -65,6 +75,11 @@ resource "aws_instance" "private_ec2_instance_1" {
   key_name               = aws_key_pair.terraform_ssh_key.key_name
   vpc_security_group_ids = [aws_security_group.backend_ec2_sg.id] # Backend EC2 security group
 
+  # Trivy - require IMDS access to require a token - https://avd.aquasec.com/misconfig/aws/ec2/avd-aws-0028/
+  metadata_options {
+    http_tokens = "required"
+  }
+
   tags = {
     Name = "terraform-orchestration-nodejs-server-ec2-1"
   }
@@ -78,6 +93,11 @@ resource "aws_instance" "private_ec2_instance_2" {
   subnet_id              = aws_subnet.terraform_orchestration_private_subnet_2.id
   key_name               = aws_key_pair.terraform_ssh_key.key_name
   vpc_security_group_ids = [aws_security_group.backend_ec2_sg.id] # Backend EC2 security group
+
+  # Trivy - require IMDS access to require a token - https://avd.aquasec.com/misconfig/aws/ec2/avd-aws-0028/
+  metadata_options {
+    http_tokens = "required"
+  }
 
   tags = {
     Name = "terraform-orchestration-nodejs-server-ec2-2"

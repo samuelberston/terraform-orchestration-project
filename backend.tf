@@ -2,6 +2,8 @@
 resource "aws_s3_bucket" "terraform_state_bucket" {
   bucket = "pimiento-tf-state-bucket"
 
+  block_public_acls = true
+
   tags = {
     Name = "pimiento-tf-state-bucket"
   }
