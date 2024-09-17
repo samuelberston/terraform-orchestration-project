@@ -56,6 +56,6 @@ resource "aws_iam_policy" "cloudwatch_policy" {
 
 # Attach CloudWatch policy to role 
 resource "aws_iam_role_policy_attachment" "attach_cloudwatch_policy" {
-  role       = "cloudwatch-logs-role"
+  role       = aws_iam_role.cloudwatch_role.name
   policy_arn = aws_iam_policy.cloudwatch_policy.arn
 }
