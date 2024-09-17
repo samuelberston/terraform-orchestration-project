@@ -46,4 +46,41 @@ resource "aws_iam_instance_profile" "ec2_secretsmanager_instance_profile" {
   role = aws_iam_role.ec2_secretsmanager_role.name
 }
 
+# IAM role for CloudWatch logs
+resource "aws_iam_role" "cloudwatch_role" {
+  name = "cloudtrail-cloudwatch-logs-role"
 
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Principal = {
+          Service = "cloudtrail.amazonaws.com"
+        },
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+# IAM policy for CloudWatch logs 
+resource "aws_iam_policy" "cloudwatch_policy" {
+  name = "cloudwatch-logs-access-policy"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow",
+        Action   = "logs:PutLogEvents",
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "attach_cloudwatch_policy" {
+  role       = "cloudwatch_role"
+  policy_arn = aws_iam_policy.cloudwatch_policy.arn
+}

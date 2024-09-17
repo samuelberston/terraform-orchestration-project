@@ -1,6 +1,6 @@
 # S3 Bucket for storing Terraform state
 resource "aws_s3_bucket" "terraform_state_bucket" {
-  bucket = "pimiento-tf-state-bucket" # Make sure the bucket name is unique across all of AWS
+  bucket = "pimiento-tf-state-bucket"
 
   tags = {
     Name = "pimiento-tf-state-bucket"
