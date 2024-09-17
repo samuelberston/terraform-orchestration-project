@@ -22,11 +22,9 @@ resource "aws_cloudtrail" "tf_cloudtrail" {
       values = ["arn:aws:s3:::my-bucket/"]
     }
   }
-
-  cloud_watch_logs_group_arn = aws_cloudwatch_log_group.app_log_group.arn
-  cloud_watch_logs_role_arn  = aws_iam_role.cloudwatch_role.arn
-
-  depends_on = [aws_cloudwatch_log_group.app_log_group] # Ensures log group is created first
+  # Temporarily remove CloudWatch Logs to see if the issue is with CloudWatch
+  # cloud_watch_logs_group_arn = aws_cloudwatch_log_group.app_log_group.arn
+  # cloud_watch_logs_role_arn  = aws_iam_role.cloudwatch_role.arn
 
   tags = {
     Name = "my-cloudtrail"
