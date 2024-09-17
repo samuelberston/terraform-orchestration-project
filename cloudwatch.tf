@@ -47,8 +47,7 @@ resource "aws_iam_policy" "cloudwatch_policy" {
           "logs:CreateLogStream",
         ],
         Resource : [
-          "arn:aws:logs:us-east-1:123456789012:log-group:/aws/cloudtrail/logs:*",
-          "arn:aws:logs:us-east-1:123456789012:log-group:/aws/cloudtrail/logs:log-stream:*"
+          "arn:aws:logs:us-east-1:${data.aws_caller_identity.current.account_id}:log-group:/aws/cloudtrail/logs:*",
         ]
       }
     ]
