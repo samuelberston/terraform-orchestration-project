@@ -70,7 +70,7 @@ resource "aws_network_acl_rule" "allow_http_inbound_from_public_2" {
 
   # adding this due to issues with the state thinking the cidr_block is updated 
   lifecycle {
-    ignore_changes = [cidr_block, protocl]
+    ignore_changes = [cidr_block, protocol]
   }
 }
 
@@ -99,7 +99,7 @@ resource "aws_network_acl_rule" "allow_ssh_inbound_from_public_2" {
 
   # adding this due to issues with the state thinking the cidr_block is updated 
   lifecycle {
-    ignore_changes = [cidr_block, protocl]
+    ignore_changes = [cidr_block, protocol]
   }
 }
 
