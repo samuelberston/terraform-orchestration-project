@@ -38,8 +38,8 @@ jobs:
     - name: Terraform Validate
       run: terraform validate        
 
-    - name: Debug Environment Variables
-      run: echo "RDS_PASSWORD=${{ secrets.RDS_PASSWORD }}"  # Check if the secret is passed correctly
+#    - name: Debug Environment Variables
+#      run: echo "RDS_PASSWORD=${{ secrets.RDS_PASSWORD }}"  # Check if the secret is passed correctly
       
     - name: Terraform Plan
       env:
