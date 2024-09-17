@@ -3,7 +3,7 @@ name: Terraform
 on:
   push:
     branches:
-      - main  # Runs on every push to the main branch
+      - main
   pull_request:
     branches:
       - main
@@ -17,7 +17,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup Terraform
+    - name: Install and Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.9.5
@@ -31,19 +31,22 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
-
+    
     - name: Terraform Init
-      run: terraform init
-
+      run: terraform init  
+    
     - name: Terraform Validate
-      run: terraform validate       
-      
+      run: terraform validate
+
     - name: Trivy Security Scan
       run: docker run --rm -v $(pwd):/src aquasec/trivy config /src
 
-#    - name: Debug Environment Variables
-#      run: echo "RDS_PASSWORD=${{ secrets.RDS_PASSWORD }}"  # Check if the secret is passed correctly
-      
+    - name: Checkhov Security Scan
+      run: docker run --volume $(pwd):/tf bridgecrew/checkov --directory /tf
+
+#   - name: Debug Environment Variables
+#     run: echo "RDS_PASSWORD=${{ secrets.RDS_PASSWORD }}"  # Debugging step to check if secrets are being passed correctly (commented out)
+
     - name: Terraform Plan
       env:
         TF_VAR_SELFSIGNED_CERT: ${{ secrets.TF_SELFSIGNED_CERT }}
