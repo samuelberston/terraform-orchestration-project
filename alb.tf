@@ -9,6 +9,8 @@ resource "aws_lb" "tf_alb" {
     aws_subnet.terraform_orchestration_public_subnet_2.id  # Public Subnet 2
   ]
 
+  drop_invalid_header_fields = true
+
   tags = {
     Name = "tf-alb"
   }
@@ -91,6 +93,8 @@ resource "aws_lb" "private_alb" {
     aws_subnet.terraform_orchestration_private_subnet_1.id,
     aws_subnet.terraform_orchestration_private_subnet_2.id
   ]
+
+  drop_invalid_header_fields = true
 
   tags = {
     Name = "private-alb"
