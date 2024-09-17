@@ -33,9 +33,15 @@ resource "aws_cloudtrail" "tf_cloudtrail" {
 
 # S3 bucket to store CloudTrail logs
 resource "aws_s3_bucket" "tf_cloudtrail_bucket" {
-  bucket            = "cloudtrail-logs-bucket-pimiento"
+  bucket = "cloudtrail-logs-bucket-pimiento"
+}
+
+# Block public access to the S3
+resource "aws_s3_bucket_public_access_block" "tf_cloudtrail_bucket_public_access_block" {
+  bucket            = aws_s3_bucket.tf_cloudtrail_bucket.id
   block_public_acls = true
 }
+
 
 # S3 bucket policy to grant CloudTrail access to write logs
 resource "aws_s3_bucket_policy" "tf_cloudtrail_bucket_policy" {

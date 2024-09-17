@@ -2,11 +2,15 @@
 resource "aws_s3_bucket" "terraform_state_bucket" {
   bucket = "pimiento-tf-state-bucket"
 
-  block_public_acls = true
-
   tags = {
     Name = "pimiento-tf-state-bucket"
   }
+}
+
+# Block public access to the S3
+resource "aws_s3_bucket_public_access_block" "terraform_state_bucket_public_access_block" {
+  bucket            = aws_s3_bucket.terraform_state_bucket.id
+  block_public_acls = true
 }
 
 # Separate resource for enabling versioning
