@@ -67,6 +67,11 @@ resource "aws_network_acl_rule" "allow_http_inbound_from_public_2" {
   cidr_block     = aws_subnet.terraform_orchestration_public_subnet_2.cidr_block # Public subnet 1 CIDR
   from_port      = 80
   to_port        = 80
+
+  # adding this due to issues with the state thinking the cidr_block is updated 
+  lifecycle {
+    ignore_changes = [cidr_block, protocl]
+  }
 }
 
 # Allow inbound HTTPS traffic (port 443) from public subnet 2
@@ -91,6 +96,11 @@ resource "aws_network_acl_rule" "allow_ssh_inbound_from_public_2" {
   cidr_block     = aws_subnet.terraform_orchestration_public_subnet_2.cidr_block # Public subnet 2 CIDR
   from_port      = 22
   to_port        = 22
+
+  # adding this due to issues with the state thinking the cidr_block is updated 
+  lifecycle {
+    ignore_changes = [cidr_block, protocl]
+  }
 }
 
 # Allow outbound PostgreSQL traffic (port 5432) to the RDS subnets
