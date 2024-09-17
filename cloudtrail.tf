@@ -23,8 +23,8 @@ resource "aws_cloudtrail" "tf_cloudtrail" {
     }
   }
   # Temporarily remove CloudWatch Logs to see if the issue is with CloudWatch
-  cloud_watch_logs_group_arn = aws_cloudwatch_log_group.app_log_group.arn
-  cloud_watch_logs_role_arn  = aws_iam_role.cloudwatch_role.arn
+  # cloud_watch_logs_group_arn = aws_cloudwatch_log_group.app_log_group.arn
+  # cloud_watch_logs_role_arn  = aws_iam_role.cloudwatch_role.arn
 
   tags = {
     Name = "tf-cloudtrail"
