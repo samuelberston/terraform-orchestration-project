@@ -23,7 +23,7 @@ resource "aws_cloudtrail" "tf_cloudtrail" {
     }
   }
 
-  cloud_watch_logs_group_arn = "arn:aws:logs:us-east-1:659931264778:log-group:/aws/cloudtrail/logs"
+  cloud_watch_logs_group_arn = aws_cloudwatch_log_group.app_log_group.arn
   cloud_watch_logs_role_arn  = aws_iam_role.cloudwatch_role.arn
 
   depends_on = [aws_cloudwatch_log_group.app_log_group] # Ensures log group is created first
