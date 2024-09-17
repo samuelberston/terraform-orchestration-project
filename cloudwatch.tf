@@ -16,7 +16,7 @@ resource "aws_cloudwatch_log_stream" "app_log_stream" {
 
 # IAM role for CloudTrail to send logs to CloudWatch
 resource "aws_iam_role" "cloudwatch_role" {
-  name = "cloudtrail-cloudwatch-logs-role"
+  name = "cloudwatch-logs-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -56,6 +56,6 @@ resource "aws_iam_policy" "cloudwatch_policy" {
 
 # Attach CloudWatch policy to role 
 resource "aws_iam_role_policy_attachment" "attach_cloudwatch_policy" {
-  role       = "cloudwatch_role"
+  role       = "cloudwatch-logs-role"
   policy_arn = aws_iam_policy.cloudwatch_policy.arn
 }
