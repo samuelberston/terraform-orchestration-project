@@ -27,7 +27,7 @@ resource "aws_cloudtrail" "tf_cloudtrail" {
   # cloud_watch_logs_role_arn  = aws_iam_role.cloudwatch_role.arn
 
   tags = {
-    Name = "my-cloudtrail"
+    Name = "tf-cloudtrail"
   }
 }
 
