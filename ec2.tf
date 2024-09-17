@@ -47,7 +47,7 @@ resource "aws_instance" "terraform_orchestration_react_client_instance_2" {
   metadata_options {
     http_tokens = "required"
   }
-  
+
   tags = {
     Name = "terraform-orchestration-react-client-ec2-2"
   }
