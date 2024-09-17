@@ -38,8 +38,11 @@ resource "aws_s3_bucket" "tf_cloudtrail_bucket" {
 
 # Block public access to the S3
 resource "aws_s3_bucket_public_access_block" "tf_cloudtrail_bucket_public_access_block" {
-  bucket            = aws_s3_bucket.tf_cloudtrail_bucket.id
-  block_public_acls = true
+  bucket                  = aws_s3_bucket.tf_cloudtrail_bucket.id
+  block_public_acls       = true
+  block_public_policy     = true # Ensure public policies cannot be added
+  ignore_public_acls      = true # Ensure AWS accounts can't ignore ACLs
+  restrict_public_buckets = true # Restrict public bucket access
 }
 
 

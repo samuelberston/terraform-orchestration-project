@@ -9,8 +9,11 @@ resource "aws_s3_bucket" "terraform_state_bucket" {
 
 # Block public access to the S3
 resource "aws_s3_bucket_public_access_block" "terraform_state_bucket_public_access_block" {
-  bucket            = aws_s3_bucket.terraform_state_bucket.id
-  block_public_acls = true
+  bucket                  = aws_s3_bucket.terraform_state_bucket.id
+  block_public_acls       = true
+  block_public_policy     = true # Ensure public policies cannot be added
+  ignore_public_acls      = true # Ensure AWS accounts can't ignore ACLs
+  restrict_public_buckets = true # Restrict public bucket access
 }
 
 # Separate resource for enabling versioning
