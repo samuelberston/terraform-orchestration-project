@@ -36,7 +36,10 @@ jobs:
       run: terraform init
 
     - name: Terraform Validate
-      run: terraform validate        
+      run: terraform validate       
+      
+    - name: Trivy Security Scan
+      run: docker run --rm -v $(pwd):/src aquasec/trivy config /src
 
 #    - name: Debug Environment Variables
 #      run: echo "RDS_PASSWORD=${{ secrets.RDS_PASSWORD }}"  # Check if the secret is passed correctly
