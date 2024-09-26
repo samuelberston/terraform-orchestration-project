@@ -32,7 +32,7 @@ jobs:
       run: echo "Confirmed"
 
     - name: Terraform Destroy
-      run: terraform destroy -auto-approve
+      run: terraform destroy -auto-approve -lock=false
       env:
         TF_VAR_SELFSIGNED_CERT: ${{ secrets.TF_SELFSIGNED_CERT }}
         TF_VAR_SELFSIGNED_KEY: ${{ secrets.TF_SELFSIGNED_KEY }}
