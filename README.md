@@ -1,1 +1,1 @@
-Terraform orcherstration and GitOps project
+Terraform orchestration and GitOps project
