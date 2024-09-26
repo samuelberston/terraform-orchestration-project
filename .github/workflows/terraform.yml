@@ -52,7 +52,7 @@ jobs:
         TF_VAR_SELFSIGNED_CERT: ${{ secrets.TF_SELFSIGNED_CERT }}
         TF_VAR_SELFSIGNED_KEY: ${{ secrets.TF_SELFSIGNED_KEY }}
         TF_VAR_RDS_PASSWORD: ${{ secrets.RDS_PASSWORD }}
-      run: terraform plan
+      run: terraform plan -lock=false
 
     - name: Terraform Apply
       env:
@@ -60,4 +60,4 @@ jobs:
         TF_VAR_SELFSIGNED_KEY: ${{ secrets.TF_SELFSIGNED_KEY }}
         TF_VAR_RDS_PASSWORD: ${{ secrets.RDS_PASSWORD }}
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: terraform apply -auto-approve
+      run: terraform apply -lock=false -auto-approve
