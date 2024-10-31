@@ -1,4 +1,4 @@
-Terraform orchestration and GitOps project
+AWS Terraform orchestration and GitOps project
 
 This terraform configuration provides the infrastructure for a three-tier distributed web application.
 It contains a public subnet for the web endpoint and a private subnet for the backend server.
